@@ -14,8 +14,8 @@ matrix:
         env: DJANGO=1.6
 
 install:
-  - pip install --use-mirrors -r dev_requirements.txt
-  - pip install -q Django==$DJANGO --use-mirrors
+  - pip install -r dev_requirements.txt
+  - pip install -q Django==$DJANGO
   - python setup.py install
   - pip freeze
 script: ./runtests.py
