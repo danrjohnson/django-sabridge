@@ -4,16 +4,17 @@ python:
   - "2.6"
 
 env:
-  matrix:
-    - DJANGO_PACKAGE=https://github.com/django/django/archive/stable/1.4.x.zip
-    - DJANGO_PACKAGE=https://github.com/django/django/archive/stable/1.5.x.zip
-    - DJANGO_PACKAGE=https://github.com/django/django/archive/stable/1.6.x.zip
-    include:
+  - DJANGO=1.4
+  - DJANGO=1.5
+  - DJANGO=1.6
+
+matrix:
+  include:
       - python: "3.4"
-        DJANGO_PACKAGE=https://github.com/django/django/archive/stable/1.6.x.zip
+        DJANGO=1.6
 install:
   - pip install --use-mirrors -r dev_requirements.txt
-  - pip install -q $DJANGO_PACKAGE --use-mirrors
+  - pip install -q Django==$DJANGO --use-mirrors
   - python setup.py install
   - pip freeze
 script: ./runtests.py
